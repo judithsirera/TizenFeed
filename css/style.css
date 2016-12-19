@@ -1,2 +1,101 @@
 body {
+  background-color: rgb(250, 250, 250);
+  color: rgb(38, 38, 38) !important;
+  font-family: 'proxima-nova','Helvetica Neue',Arial,Helvetica,sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.material-icons {
+  font-size: 30px;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.img-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  background-color: rgb(255, 255, 255) !important;
+}
+
+.img-info-panel{
+  position: relative;
+  padding: 30px 50px 30px 50px;
+
+}
+
+#img-feed {
+  padding: 0 !important;
+}
+
+.line-down {
+  border-bottom: 1px solid rgb(239, 239, 239);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.line-top {
+  border-top: 1px solid rgb(239, 239, 239);
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+#location::before{
+  content: ' ';
+}
+#location {
+  text-transform: capitalize;
+}
+
+.user-text {
+  margin: 5px;
+  margin-top: 0px;
+  text-transform: lowercase;
+  font-size: 18px;
+}
+
+#time {
+  color: rgb(153, 153, 153);
+}
+
+ul li {
+  list-style: none;
+}
+.comment span {
+  text-transform: lowercase;
+}
+.comment span::after{
+  content: ' ';
+}
+
+.tag-user::before{
+  content: '@';
+}
+.tag-user, .hastag {
+  color: #003569;
+}
+.hastag::before{
+  content: '#';
+}
+
+#like {
+  text-align: center;
+  color: rgb(170, 170, 170);
+  font-size: 20px;
+}
+
+#comment::-webkit-input-placeholder { color: rgb(170, 170, 170); } /* WebKit */
+#comment:-moz-placeholder { color: rgb(170, 170, 170); } /* Firefox 18- */
+#comment::-moz-placeholder { color: rgb(170, 170, 170); } /* Firefox 19+ */
+#comment:-ms-input-placeholder { color: rgb(170, 170, 170); } /* IE 10+ */
+
+
+.form-control,.ui-body-c, .ui-overlay-c,.ui-shadow-inset,.form-control:focus,.ui-input-text.ui-focus, .ui-input-search.ui-focus {
+  box-shadow: none;
+  border: none;
+  background: none;
 }

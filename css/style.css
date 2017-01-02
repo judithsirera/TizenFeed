@@ -134,3 +134,7 @@ ul li {
 #posts .row{
   margin: 0px;
 }
+
+#posts {
+  margin-bottom: 20px;
+}

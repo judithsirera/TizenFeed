@@ -5,6 +5,10 @@ body {
   letter-spacing: 0.3px;
 }
 
+h3 {
+  margin-top: 10px;
+}
+
 .material-icons {
   font-size: 30px;
 }
@@ -33,13 +37,13 @@ body {
 }
 
 .line-down {
-  border-bottom: 1px solid rgb(239, 239, 239);
+  border-bottom: 1px solid rgb(219, 219, 219);
   padding-bottom: 15px;
   margin-bottom: 15px;
 }
 
 .line-top {
-  border-top: 1px solid rgb(239, 239, 239);
+  border-top: 1px solid rgb(219, 219, 219);
   padding-top: 15px;
   margin-top: 15px;
 }
@@ -52,14 +56,17 @@ body {
 }
 
 .user-text {
-  margin: 5px;
+  margin-bottom: 5px;
   margin-top: 0px;
-  text-transform: lowercase;
   font-size: 18px;
 }
 
 #time {
   color: rgb(153, 153, 153);
+}
+
+#username {
+  text-transform: lowercase;
 }
 
 ul li {
@@ -94,8 +101,36 @@ ul li {
 #comment:-ms-input-placeholder { color: rgb(170, 170, 170); } /* IE 10+ */
 
 
-.form-control,.ui-body-c, .ui-overlay-c,.ui-shadow-inset,.form-control:focus,.ui-input-text.ui-focus, .ui-input-search.ui-focus {
+.form-control,.ui-body-c, input.ui-overlay-c,.ui-shadow-inset,.form-control:focus,.ui-input-text.ui-focus, .ui-input-search.ui-focus {
   box-shadow: none;
   border: none;
   background: none;
+}
+
+.btn-top-right {
+  position: absolute;
+  right: 50px;
+  top: 40px;
+}
+
+.color-gray {
+  color: rgb(170, 170, 170);
+}
+
+.user-summary {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.user-summary p {
+  margin: 1px;
+  margin-top: 0px;
+}
+
+.grid-margin {
+  padding: 2px 2px 2px 2px;
+}
+
+#posts .row{
+  margin: 0px;
 }

@@ -23,6 +23,30 @@ var downloadPhotosList = function() {
 
 	$.get(url, params).done(function(data) {
 		console.log(data);
+		var template = $("#template").html();
+		var i = 1;
+		data.forEach(function(photo) {
+			params = {
+					active: "",
+					image: photo.urls.regular,
+					profile: photo.user.profile_image.large,
+					username: photo.user.username,
+					location: photo.user.location,
+					date: photo.created_at.split("T")[0],
+					likes: photo.likes					
+			};
+			 
+			
+			if (i == 1) {
+				params.active = "active";
+			}
+			console.log(photo.color);
+			i++;
+			
+			var rendered = Mustache.render(template, params);
+			$("#carousel").append(rendered);
+			
+		});
 	});
 }
 

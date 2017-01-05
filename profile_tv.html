@@ -22,83 +22,46 @@
 
   </head>
   <body>
-    <section id="userInformation" class="container">
+    <section id="userInformation" class="container"></section>
+
+    <section id="posts" class="container">
+      <div id="userPosts" class="row"></div>
+    </section>
+
+
+    <script id="userInformationTemplate" type="x-tmpl-mustache">
       <div class="row">
         <div id="information" class="col-lg-offset-2 col-lg-8 img-info-panel">
           <div id="user" class="row line-down">
-            <div class="col-lg-2">
-              <img class="img-responsive img-circle" src="./css/images/image_square.JPG" alt="">
+            <div class="col-lg-2 right">
+              <img class="img-responsive img-circle" src="{{ image }}" alt="">
             </div>
             <div class="col-lg-4 text-center" style="padding-top:10px;">
-              <h3 class="font-bold" id="username">TizenGram</h3>
-              <h2 class="user-text"> TizenGram official</h2>
+              <h3 class="font-bold" id="username">{{ username }}</h3>
+              <h2 class="user-text"> {{ name }}</h2>
             </div>
             <div class="col-lg-2 user-summary">
-              <h4 class="font-bold">123</h4>
+              <h4 class="font-bold">{{ posts }}</h4>
               <h4 class="color-gray">posts</h4>
             </div>
             <div class="col-lg-2 user-summary">
-              <h4 class="font-bold">12k</h4>
+              <h4 class="font-bold">{{ followers }}</h4>
               <h4 class="color-gray">followers</h4>
             </div>
             <div class="col-lg-2 user-summary">
-              <h4 class="font-bold">123</h4>
+              <h4 class="font-bold">{{ following }}</h4>
               <h4 class="color-gray">following</h4>
             </div>
-
           </div>
         </div>
       </div>
-    </section>
+    </script>
 
-    <section id="posts" class="container">
-      <div class="row">
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
-        <div class="col-lg-3 grid-margin">
-          <img class="img-responsive" src="./css/images/image_square.JPG" alt="">
-        </div>
+    <script id="userPostsTemplate" type="x-tmpl-mustache">
+      <div class="col-lg-3 grid-margin">
+        <img class="img-responsive" src="{{ image }}" alt="">
       </div>
-    </section>
+    </script>
+
   </body>
 </html>

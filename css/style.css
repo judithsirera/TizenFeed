@@ -116,7 +116,12 @@ ul li {
   position: absolute;
   right: 30px;
   top: 20px;
-  display: flex;
+}
+
+.btn-top-right .btn {
+  margin-top: 5px;
+  display: list-item;
+  width:60px
 }
 
 .color-gray {
@@ -126,9 +131,10 @@ ul li {
 .user-summary {
   text-align: center;
   text-transform: capitalize;
+  margin-top: 25px;
 }
 
-.user-summary p {
+.user-summary h4 {
   margin: 1px;
   margin-top: 0px;
 }

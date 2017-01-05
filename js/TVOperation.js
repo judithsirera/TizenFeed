@@ -8,7 +8,7 @@ function setFocusElement(e) {
 	console.log("mainfocus = " + mainfocus);
 	switch (e.keyCode) {
 		case TvKeyCode.KEY_ENTER:
-			window.location.href = $("#id"+mainfocus).attr("href");
+			//window.location.href = $("#id"+mainfocus).attr("href");
             break;
         case TvKeyCode.KEY_UP:
 			if(mainfocus < item_count + 1 && mainfocus > 0){
@@ -43,22 +43,30 @@ function setFocusElement(e) {
 				last_focus_index=mainfocus;
 			}
             break;
+		case TvKeyCode.KEY_RED:
+			if (currentPage === "index") {
+				saveCurrentUser();
+				window.location.href = "profile_tv.html";
+			} else if (currentPage === "profile_tv") {
+				window.location.href = "index.html";
+			}
+			break;
     }
 }
 
 function showItem(index) {
-	$("#id" + index).addClass("ui-btn-active");
-	$("#id" + index).addClass("ui-focus");
-	$("#li" + index).addClass("ui-focus");
+	//$("#id" + index).addClass("ui-btn-active");
+	//$("#id" + index).addClass("ui-focus");
+	//$("#li" + index).addClass("ui-focus");
 }
 
 function hideItem(index) {
-	$("#id" + index).removeClass("ui-btn-active");
-	$("#id" + index).removeClass("ui-focus");
-	$("#li" + index).removeClass("ui-focus");
-	if((index == item_count - 1) && $(".ui-btn-active").attr("id") && parseInt($(".ui-btn-active").attr("id").substr(2,1)) > item_count - 1){
-		$(".ui-btn-active").removeClass("ui-btn-active");
-	}
+	//$("#id" + index).removeClass("ui-btn-active");
+	//$("#id" + index).removeClass("ui-focus");
+	//$("#li" + index).removeClass("ui-focus");
+	//if((index == item_count - 1) && $(".ui-btn-active").attr("id") && parseInt($(".ui-btn-active").attr("id").substr(2,1)) > item_count - 1){
+	//	$(".ui-btn-active").removeClass("ui-btn-active");
+	//}
 }
 
 $(document).ready(function(){

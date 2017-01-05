@@ -35,7 +35,9 @@ var downloadPhotosList = function() {
 					likes: photo.likes
 			};
 
-			if (i == 1) {
+			if (getCurrentUser() == undefined && i == 1) {
+				params.active = "active";
+			} else if (params.username == getCurrentUser()) {
 				params.active = "active";
 			}
 			i++;
@@ -47,7 +49,7 @@ var downloadPhotosList = function() {
 }
 
 var downloadProfileUser = function(username) {
-	console.log("downloadProfileUser() called");
+	console.log("downloadProfileUser(" + username + ") called");
 
 	var url_profile = base_url + endpoints.users + "/" + username;
 	var url_photos = url_profile + "/" + endpoints.photos;
@@ -85,8 +87,32 @@ var downloadProfileUser = function(username) {
 			$("#userPosts").append(rendered);
 		});
 	});
+}
 
+var downloadData = function () {
+	if (currentPage === "index") {
+		downloadPhotosList();
+	} else if (currentPage === "profile_tv") {
+		downloadProfileUser(getCurrentUser());
+	}
+}
 
+var currentPage;
+
+var getCurrentPage = function () {
+	var arr = window.location.pathname.split("/");
+	var file = arr[arr.length-1];
+	
+	return file.split(".")[0];
+}
+
+var getCurrentUser = function () {
+	return localStorage.getItem("currentUser");
+}
+
+var saveCurrentUser = function () {
+	var currentUser = $(".item.active").find("#username").html();
+	localStorage.setItem("currentUser", currentUser);
 }
 
 //Initialize function
@@ -98,8 +124,10 @@ var init = function () {
 
     // TODO:: Do your initialization job
     console.log("init() called");
-    downloadPhotosList();
-		downloadProfileUser("vingtcent");
+    console.log("window.location", window.location);
+    currentPage = getCurrentPage();
+    console.log("currentPage", currentPage);
+    downloadData();
 
     var backEvent = function(e) {
         if ( e.keyName == "back" ) {

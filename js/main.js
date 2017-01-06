@@ -24,6 +24,7 @@ var downloadPhotosList = function() {
 	$.get(url, params).done(function(data) {
 		var template = $("#template").html();
 		var i = 1;
+		var total = data.length;
 		data.forEach(function(photo) {
 			params = {
 					active: "",
@@ -38,6 +39,8 @@ var downloadPhotosList = function() {
 			if (getCurrentUser() == undefined && i == 1) {
 				params.active = "active";
 			} else if (params.username == getCurrentUser()) {
+				params.active = "active";
+			} else if (i == total) {
 				params.active = "active";
 			}
 			i++;

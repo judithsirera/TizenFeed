@@ -118,6 +118,34 @@ var saveCurrentUser = function () {
 	localStorage.setItem("currentUser", currentUser);
 }
 
+var songs = [
+             "Coldplay - Adventure Of A Lifetime.mp3",
+             "Lost Frequencies ft. Janieck Devy -  Reality.mp3",
+             "Adam Levine & R. City - Locked Away Lyrics.mp3",
+             "Gabriela Richardson ft. Y'ALL - Hundred Miles.mp3",
+             "Otto Knows - Next to Me.mp3"
+             ];
+var currSong;
+var audio;
+
+var playSong = function () {
+	audio = new Audio('music/' + songs[currSong]);
+	audio.onended = function() {
+	    nextSong();
+	};
+	audio.play();
+}
+
+var nextSong = function () {
+	currSong = (currSong + 1) % songs.length;
+	playSong();
+}
+
+var initMusic = function () {
+	currSong = 0;
+	playSong();
+}
+
 //Initialize function
 var init = function () {
     // register once
@@ -127,10 +155,9 @@ var init = function () {
 
     // TODO:: Do your initialization job
     console.log("init() called");
-    console.log("window.location", window.location);
     currentPage = getCurrentPage();
-    console.log("currentPage", currentPage);
-    downloadData();
+    //downloadData();
+    initMusic();
 
     var backEvent = function(e) {
         if ( e.keyName == "back" ) {

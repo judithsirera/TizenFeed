@@ -72,7 +72,7 @@ var downloadProfileUser = function(username) {
 		$("#userInformation").append(rendered);
 	});
 
-	params.per_page = 30;
+	params.per_page = 8;
 	$.get(url_photos, params).done(function(data) {
 		var template = $("#userPostsTemplate").html();
 

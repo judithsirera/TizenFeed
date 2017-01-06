@@ -6,9 +6,6 @@ var button_count = 3;
 function setFocusElement(e) {
 	console.log("setFocusElement : keyCode : " + e.keyCode);
 	switch (e.keyCode) {
-		case TvKeyCode.KEY_ENTER:
-			//window.location.href = $("#id"+mainfocus).attr("href");
-            break;
         case TvKeyCode.KEY_UP:
 			break;
         case TvKeyCode.KEY_LEFT:
@@ -24,6 +21,18 @@ function setFocusElement(e) {
 			} else if (currentPage === "profile_tv") {
 				window.location.href = "index.html";
 			}
+			break;
+		case TvKeyCode.KEY_PAUSE:
+			audio.pause();
+			break;
+		case TvKeyCode.KEY_PLAY:
+			audio.play();
+			break;
+		case TvKeyCode.KEY_NEXT:
+			nextSong();
+			break;
+		case TvKeyCode.KEY_PREVIOUS:
+			prevSong();
 			break;
     }
 }

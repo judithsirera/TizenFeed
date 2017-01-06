@@ -119,21 +119,29 @@ var saveCurrentUser = function () {
 }
 
 var songs = [
-             "Coldplay - Adventure Of A Lifetime.mp3",
              "Lost Frequencies ft. Janieck Devy -  Reality.mp3",
+             "Coldplay - Adventure Of A Lifetime.mp3",
              "Adam Levine & R. City - Locked Away Lyrics.mp3",
              "Gabriela Richardson ft. Y'ALL - Hundred Miles.mp3",
              "Otto Knows - Next to Me.mp3"
              ];
 var currSong;
-var audio;
+var audio = new Audio();
 
 var playSong = function () {
-	audio = new Audio('music/' + songs[currSong]);
+	console.log("play", songs[currSong]);
+	audio.src = 'music/' + songs[currSong];
 	audio.onended = function() {
 	    nextSong();
 	};
 	audio.play();
+}
+
+var prevSong = function () {
+	n = currSong - 1;
+	m = songs.length;
+	currSong = ((n % m) + m) % m;
+	playSong();
 }
 
 var nextSong = function () {

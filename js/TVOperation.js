@@ -6,13 +6,15 @@ var button_count = 3;
 function setFocusElement(e) {
 	console.log("setFocusElement : keyCode : " + e.keyCode);
 	switch (e.keyCode) {
-        case TvKeyCode.KEY_UP:
+    case TvKeyCode.KEY_UP:
 			break;
-        case TvKeyCode.KEY_LEFT:
-	        break;
-        case TvKeyCode.KEY_DOWN:
+    case TvKeyCode.KEY_LEFT:
+			$('.carousel').carousel('prev');
+      break;
+    case TvKeyCode.KEY_DOWN:
 			break;
 		case TvKeyCode.KEY_RIGHT:
+		$('.carousel').carousel('next');
             break;
 		case TvKeyCode.KEY_RED:
 			if (currentPage === "index") {
@@ -61,5 +63,3 @@ $(document).ready(function(){
 });
 
 //ui-btn-active km_focusable
-
-

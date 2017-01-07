@@ -40,9 +40,10 @@ var downloadPhotosList = function() {
 				params.active = "active";
 			} else if (params.username == getCurrentUser()) {
 				params.active = "active";
-			} else if (i == total) {
-				params.active = "active";
 			}
+			// } else if (i == total) {
+			// 	params.active = "active";
+			// }
 			i++;
 
 			var rendered = Mustache.render(template, params);
@@ -105,7 +106,7 @@ var currentPage;
 var getCurrentPage = function () {
 	var arr = window.location.pathname.split("/");
 	var file = arr[arr.length-1];
-	
+
 	return file.split(".")[0];
 }
 
@@ -164,7 +165,7 @@ var init = function () {
     // TODO:: Do your initialization job
     console.log("init() called");
     currentPage = getCurrentPage();
-    //downloadData();
+    downloadData();
     initMusic();
 
     var backEvent = function(e) {

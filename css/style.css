@@ -144,6 +144,10 @@ ul li {
   border: 3px solid transparent;
 }
 
+.focused {
+  border: 3px solid red;
+}
+
 #posts .row{
   margin: 0px;
 }

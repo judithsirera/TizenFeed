@@ -94,7 +94,10 @@
           });
 
           controllerProvider.onSelected(function(event, originalEvent) {
-            console.log($(event.currentTarget).children('img').attr("src"));
+            var url = $(event.currentTarget).children('img').attr("src");
+            var new_photo = url.replace("w=400", "w=1080");
+            saveNewPhoto(new_photo);
+            window.location.href = "index.html";
           });
         });
       });

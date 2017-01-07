@@ -12,6 +12,7 @@ var unregister = function() {
         document.removeEventListener( 'tizenhwkey', backEventListener );
         backEventListener = null;
         window.tizen.application.getCurrentApplication().exit();
+				clearPhotoSelected();
     }
 }
 
@@ -43,6 +44,9 @@ var downloadPhotosList = function() {
 			} else if (params.username == getCurrentUser() && !activeSet) {
 				params.active = "active";
 				activeSet = true;
+				if (getPhotoSelected() != undefined) {
+					params.image = getPhotoSelected();
+				}
 			}
 			i++;
 
@@ -142,6 +146,18 @@ var saveCurrentSong = function () {
 
 var getCurrentSong = function () {
 	return localStorage.getItem("currSong");
+}
+
+var saveNewPhoto = function (new_photo) {
+	localStorage.setItem("photoSelected", new_photo);
+}
+
+var getPhotoSelected = function () {
+	return localStorage.getItem("photoSelected");
+}
+
+var clearPhotoSelected = function () {
+	localStorage.removeItem("photoSelected");
 }
 
 var songs = [

@@ -34,9 +34,10 @@
   <body>
     <section id="userInformation" class="container">
       <div class="btn-top-right">
-        <button class="btn btn-default" type="button" name="back">Back</button>
-        <button class="btn btn-default" type="button" name="info">Help</button>
+        <button class="btn btn-default red-btn" type="button" name="back">Back</button>
       </div>
+      <div id="musicState" class="btn-top-left"></div>
+
     </section>
 
     <section id="posts" class="container">
@@ -101,6 +102,10 @@
           });
         });
       });
+    </script>
+
+    <script id="musicStateTmpl" type="x-tmpl-mustache">
+      <h5><span class="glyphicon glyphicon-{{ musicState }}"></span> {{ song }} </h5>
     </script>
 
   </body>

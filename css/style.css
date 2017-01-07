@@ -118,10 +118,20 @@ ul li {
   top: 20px;
 }
 
+.btn-top-left {
+  position: absolute;
+  left: 30px;
+  top: 20px;
+}
+
 .btn-top-right .btn {
   margin-top: 5px;
   display: list-item;
   width:60px
+}
+
+.red-btn {
+  background-color: red;
 }
 
 .color-gray {

@@ -33,19 +33,23 @@ function setFocusElement(e) {
 			if (getMusicState() == "play") {
 				audio.pause();
 				saveMusicState("pause");
+				setMusicStateTmpl();
 			}
 			break;
 		case TvKeyCode.KEY_PLAY:
 			if (getMusicState() == "pause") {
 				audio.play();
 				saveMusicState("play");
+				setMusicStateTmpl();
 			}
 			break;
 		case TvKeyCode.KEY_NEXT:
 			nextSong();
+			setMusicStateTmpl();
 			break;
 		case TvKeyCode.KEY_PREVIOUS:
 			prevSong();
+			setMusicStateTmpl();
 			break;
     }
 }

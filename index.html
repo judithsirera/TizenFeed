@@ -24,8 +24,15 @@
 
   </head>
   <body>
+    <div class="btn-top-right">
+      <button class="btn btn-default red-btn" type="button" name="user_profile">User</button>
+    </div>
+
+    <div id="musicState" class="btn-top-left"></div>
 
     <section class="container img-panel">
+
+
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
         <!-- Wrapper for slides -->
@@ -59,10 +66,6 @@
                   <div class="col-lg-12 text-center" style="margin-top: 20px">
                     <h5 class="user-text font-bold" id="username">{{ username }}</h5>
                   </div>
-                  <div class="btn-top-right">
-                    <button class="btn btn-default" type="button" name="user_profile">User</button>
-                    <button class="btn btn-default" type="button" name="info">Help</button>
-                  </div>
                 </div>
                 <div class="row text-center line-down">
                   <div class="col-lg-12 col-lg-offset-0">
@@ -92,6 +95,10 @@
               </div>
             </div>
           </div>
+    </script>
+
+    <script id="musicStateTmpl" type="x-tmpl-mustache">
+      <h5><span class="glyphicon glyphicon-{{ musicState }}"></span> {{ song }} </h5>
     </script>
 
     <script type="text/javascript">

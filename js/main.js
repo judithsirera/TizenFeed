@@ -209,6 +209,24 @@ var initMusic = function () {
 	if (getMusicState() == "pause") {
 		audio.pause();
 	}
+
+	setMusicStateTmpl();
+
+}
+
+var setMusicStateTmpl = function() {
+	var template = $("#musicStateTmpl").html();
+
+	params = {
+		musicState: "play",
+		song: songs[currSong].split(".")[0]
+	}
+	if (getMusicState() != undefined) {
+		params.musicState = getMusicState();
+	}
+	var rendered = Mustache.render(template, params);
+	$("#musicState").empty();
+	$("#musicState").append(rendered);
 }
 
 //Initialize function

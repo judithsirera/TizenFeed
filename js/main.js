@@ -25,8 +25,8 @@ var downloadPhotosList = function() {
 	$.get(url, params).done(function(data) {
 		var template = $("#template").html();
 		var i = 1;
+		var foundActive = false;
 		var total = data.length;
-		var activeSet = false;
 		data.forEach(function(photo) {
 			params = {
 					active: "",
@@ -38,14 +38,19 @@ var downloadPhotosList = function() {
 					likes: photo.likes
 			};
 
-			if (getCurrentUser() == undefined && i == 1 && !activeSet) {
-				params.active = "active";
-				activeSet = true;
-			} else if (params.username == getCurrentUser() && !activeSet) {
-				params.active = "active";
-				activeSet = true;
-				if (getPhotoSelected() != undefined) {
-					params.image = getPhotoSelected();
+			if (!foundActive) {
+				if (getCurrentUser() == undefined && i == 1) {
+					foundActive = true;
+					params.active = "active";
+				} else if (params.username == getCurrentUser()) {
+					foundActive = true;
+					params.active = "active";
+					if (getPhotoSelected() != undefined) {
+						params.image = getPhotoSelected();
+					}
+				} else if (i == total) {
+					foundActive = true;
+					params.active = "active";
 				}
 			}
 			i++;
@@ -213,7 +218,6 @@ var init = function () {
         return;
     }
 
-    // TODO:: Do your initialization job
     console.log("init() called");
     currentPage = getCurrentPage();
     downloadData();

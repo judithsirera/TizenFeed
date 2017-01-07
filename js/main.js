@@ -44,9 +44,6 @@ var downloadPhotosList = function() {
 				params.active = "active";
 				activeSet = true;
 			}
-			// } else if (i == total) {
-			// 	params.active = "active";
-			// }
 			i++;
 
 			var rendered = Mustache.render(template, params);

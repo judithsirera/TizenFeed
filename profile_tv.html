@@ -73,7 +73,7 @@
     </script>
 
     <script id="userPostsTemplate" type="x-tmpl-mustache">
-      <div class="col-lg-3 grid-margin {{ focused }}" focusable data-focusable-initial-focus="{{ focusInit }}" style="border: 3px solid transparent;">
+      <div class="col-lg-3 grid-margin {{ focused }}" focusable data-focusable-initial-focus="{{ focusInit }}">
         <img class="img-responsive" src="{{ image }}" alt="">
       </div>
     </script>
@@ -81,17 +81,21 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $.caph.focus.activate(function(nearestFocusableFinderProvider, controllerProvider) {
-        controllerProvider.onFocused(function(event, originalEvent) {
-          $(event.currentTarget).css({
-            border: '3px solid red'
+          controllerProvider.onFocused(function(event, originalEvent) {
+            $(event.currentTarget).css({
+              border: '3px solid red'
+            });
           });
-        });
 
-        controllerProvider.onBlurred(function(event, originalEvent) {
-          $(event.currentTarget).css({
-            border: '3px solid transparent'
+          controllerProvider.onBlurred(function(event, originalEvent) {
+            $(event.currentTarget).css({
+              border: '3px solid transparent'
+            });
           });
-        });
+
+          controllerProvider.onSelected(function(event, originalEvent) {
+            console.log($(event.currentTarget).children('img').attr("src"));
+          });
         });
       });
     </script>

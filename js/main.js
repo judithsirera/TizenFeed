@@ -25,6 +25,7 @@ var downloadPhotosList = function() {
 		var template = $("#template").html();
 		var i = 1;
 		var total = data.length;
+		var activeSet = false;
 		data.forEach(function(photo) {
 			params = {
 					active: "",
@@ -36,10 +37,12 @@ var downloadPhotosList = function() {
 					likes: photo.likes
 			};
 
-			if (getCurrentUser() == undefined && i == 1) {
+			if (getCurrentUser() == undefined && i == 1 && !activeSet) {
 				params.active = "active";
-			} else if (params.username == getCurrentUser()) {
+				activeSet = true;
+			} else if (params.username == getCurrentUser() && !activeSet) {
 				params.active = "active";
+				activeSet = true;
 			}
 			// } else if (i == total) {
 			// 	params.active = "active";
@@ -80,12 +83,21 @@ var downloadProfileUser = function(username) {
 	$.get(url_photos, params).done(function(data) {
 		var template = $("#userPostsTemplate").html();
 
+		var i = 1;
 		data.forEach(function(photo) {
 			console.log(photo);
 
 			params_ = {
-				image: photo.urls.small
+				image: photo.urls.small,
+				focusInit: "false",
+				focused: ""
 			}
+
+			if (i == 1) {
+				params_.focusInit = "true";
+				params_.focused = "focused";
+			}
+			i++;
 
 			var rendered = Mustache.render(template, params_);
 			$("#userPosts").append(rendered);
@@ -119,6 +131,22 @@ var saveCurrentUser = function () {
 	localStorage.setItem("currentUser", currentUser);
 }
 
+var saveMusicState = function (state) {
+	localStorage.setItem("musicState", state);
+}
+
+var getMusicState = function () {
+	return localStorage.getItem("musicState");
+}
+
+var saveCurrentSong = function () {
+	localStorage.setItem("currSong", currSong);
+}
+
+var getCurrentSong = function () {
+	return localStorage.getItem("currSong");
+}
+
 var songs = [
              "Lost Frequencies ft. Janieck Devy -  Reality.mp3",
              "Coldplay - Adventure Of A Lifetime.mp3",
@@ -142,17 +170,27 @@ var prevSong = function () {
 	n = currSong - 1;
 	m = songs.length;
 	currSong = ((n % m) + m) % m;
+	saveCurrentSong();
 	playSong();
 }
 
 var nextSong = function () {
 	currSong = (currSong + 1) % songs.length;
+	saveCurrentSong();
 	playSong();
 }
 
 var initMusic = function () {
-	currSong = 0;
+	if (getCurrentSong() == undefined) {
+		currSong = 0;
+	}else {
+		currSong = getCurrentSong();
+	}
 	playSong();
+
+	if (getMusicState() == "pause") {
+		audio.pause();
+	}
 }
 
 //Initialize function

@@ -20,7 +20,17 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css" />
 
+    <!-- include CAPH 3.0.1 default package -->
+    <link href="lib/caph/3.0.1/caph.min.css" rel="stylesheet" type="text/stylesheet">
+    <!-- include jQuery file (you can use AngularJS & jQuery in your environment) -->
+    <script src="lib/caph/3.0.1/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <!-- include the CAPH Package for AngularJS -->
+    <script src="lib/caph/3.0.1/caph-jquery.min.js"></script>
+
   </head>
+
+
+
   <body>
     <section id="userInformation" class="container">
       <div class="btn-top-right">
@@ -63,9 +73,27 @@
     </script>
 
     <script id="userPostsTemplate" type="x-tmpl-mustache">
-      <div class="col-lg-3 grid-margin">
+      <div class="col-lg-3 grid-margin {{ focused }}" focusable data-focusable-initial-focus="{{ focusInit }}" style="border: 3px solid transparent;">
         <img class="img-responsive" src="{{ image }}" alt="">
       </div>
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $.caph.focus.activate(function(nearestFocusableFinderProvider, controllerProvider) {
+        controllerProvider.onFocused(function(event, originalEvent) {
+          $(event.currentTarget).css({
+            border: '3px solid red'
+          });
+        });
+
+        controllerProvider.onBlurred(function(event, originalEvent) {
+          $(event.currentTarget).css({
+            border: '3px solid transparent'
+          });
+        });
+        });
+      });
     </script>
 
   </body>

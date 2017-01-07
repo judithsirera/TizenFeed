@@ -9,13 +9,18 @@ function setFocusElement(e) {
     case TvKeyCode.KEY_UP:
 			break;
     case TvKeyCode.KEY_LEFT:
-			$('.carousel').carousel('prev');
+			if (currentPage == "index") {
+				$('.carousel').carousel('prev');
+			}
+
       break;
     case TvKeyCode.KEY_DOWN:
 			break;
 		case TvKeyCode.KEY_RIGHT:
-		$('.carousel').carousel('next');
-            break;
+			if (currentPage == "index") {
+				$('.carousel').carousel('next');
+			}
+		  break;
 		case TvKeyCode.KEY_RED:
 			if (currentPage === "index") {
 				saveCurrentUser();
@@ -25,10 +30,16 @@ function setFocusElement(e) {
 			}
 			break;
 		case TvKeyCode.KEY_PAUSE:
-			audio.pause();
+			if (getMusicState() == "play") {
+				audio.pause();
+				saveMusicState("pause");
+			}
 			break;
 		case TvKeyCode.KEY_PLAY:
-			audio.play();
+			if (getMusicState() == "pause") {
+				audio.play();
+				saveMusicState("play");
+			}
 			break;
 		case TvKeyCode.KEY_NEXT:
 			nextSong();

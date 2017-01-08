@@ -12,7 +12,7 @@ var unregister = function() {
         document.removeEventListener( 'tizenhwkey', backEventListener );
         backEventListener = null;
         window.tizen.application.getCurrentApplication().exit();
-				clearPhotoSelected();
+				clearLocalStorage();
     }
 }
 
@@ -20,11 +20,12 @@ var downloadPhotosList = function() {
 	console.log("downloadPhotosList() called");
 
 	var url = base_url + endpoints.photos;
-	var params = { client_id: client_id };
+	var params_ = { client_id: client_id };
 
-	$.get(url, params).done(function(data) {
+	$.get(url, params_).done(function(data) {
 		var template = $("#template").html();
 		var i = 1;
+		var isPhotoSelected = false;
 		var foundActive = false;
 		var total = data.length;
 		data.forEach(function(photo) {
@@ -44,10 +45,12 @@ var downloadPhotosList = function() {
 					params.active = "active";
 				} else if (params.username == getCurrentUser()) {
 					foundActive = true;
-					params.active = "active";
 					if (getPhotoSelected() != undefined) {
-						params.image = getPhotoSelected();
+						downloadPhotoSelected(getPhotoSelected(), template);
+						clearPhotoSelected();
+						isPhotoSelected = true;
 					}
+					params.active = "active";
 				} else if (i == total) {
 					foundActive = true;
 					params.active = "active";
@@ -55,10 +58,40 @@ var downloadPhotosList = function() {
 			}
 			i++;
 
-			var rendered = Mustache.render(template, params);
-			$("#carousel").append(rendered);
+			if (!isPhotoSelected) {
+				var rendered = Mustache.render(template, params);
+				$("#carousel").append(rendered);
+			} else {
+				isPhotoSelected = false;
+			}
 		});
 	});
+
+}
+
+var downloadPhotoSelected = function (img_id, template) {
+	console.log("downloadPhotoSelected");
+
+	var url = base_url + endpoints.photos + "/" + img_id;
+	var params_ = { client_id: client_id };
+
+	$.get(url, params_).done(function(new_photo) {
+		params = {
+				active: "active",
+				image: new_photo.urls.regular,
+				profile: new_photo.user.profile_image.large,
+				username: new_photo.user.username,
+				location: new_photo.user.location,
+				date: new_photo.created_at.split("T")[0],
+				likes: new_photo.likes
+		};
+
+		var rendered = Mustache.render(template, params);
+		$("#carousel").append(rendered);
+
+	});
+
+
 }
 
 var downloadProfileUser = function(username) {
@@ -69,7 +102,6 @@ var downloadProfileUser = function(username) {
 	var params = { client_id: client_id };
 
 	$.get(url_profile, params).done(function(data) {
-		console.log(data);
 
 		var template = $("#userInformationTemplate").html();
 		params_ = {
@@ -91,9 +123,9 @@ var downloadProfileUser = function(username) {
 
 		var i = 1;
 		data.forEach(function(photo) {
-			console.log(photo);
 
 			params_ = {
+				img_id: photo.id,
 				image: photo.urls.small,
 				focusInit: "false",
 				focused: ""
@@ -159,6 +191,11 @@ var saveNewPhoto = function (new_photo) {
 
 var getPhotoSelected = function () {
 	return localStorage.getItem("photoSelected");
+}
+
+var clearLocalStorage = function () {
+	clearPhotoSelected();
+	localStorage.removeItem("currentUser");
 }
 
 var clearPhotoSelected = function () {
@@ -252,6 +289,7 @@ var init = function () {
                     $.mobile.urlHistory.activeIndex -= 1;
                     $.mobile.urlHistory.clearForward();
                     window.history.back();
+										clearLocalStorage();
                 }
             } catch( ex ) {
                 unregister();

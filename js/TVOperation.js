@@ -70,11 +70,11 @@ function hideItem(index) {
 }
 
 $(document).ready(function(){
-     console.log("page load complete!!!");
-	 item_count = $("ul[data-role='listview']").find("a").length;
-	 console.log("li count = " + item_count);
-	 showItem(0);
-	 $(".ui-controlgroup-controls").attr("style", "width:50%");
+  //    console.log("page load complete!!!");
+	//  item_count = $("ul[data-role='listview']").find("a").length;
+	//  console.log("li count = " + item_count);
+	//  showItem(0);
+	//  $(".ui-controlgroup-controls").attr("style", "width:50%");
 });
 
 //ui-btn-active km_focusable

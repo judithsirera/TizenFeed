@@ -75,8 +75,12 @@
 
     <script id="userPostsTemplate" type="x-tmpl-mustache">
       <div class="col-lg-3 grid-margin {{ focused }}" focusable data-focusable-initial-focus="{{ focusInit }}">
-        <img class="img-responsive" src="{{ image }}" alt="">
+        <img id="{{ img_id }}" class="img-responsive" src="{{ image }}" alt="">
       </div>
+    </script>
+
+    <script id="musicStateTmpl" type="x-tmpl-mustache">
+      <h5><span class="glyphicon glyphicon-{{ musicState }}"></span> {{ song }} </h5>
     </script>
 
     <script type="text/javascript">
@@ -95,18 +99,15 @@
           });
 
           controllerProvider.onSelected(function(event, originalEvent) {
-            var url = $(event.currentTarget).children('img').attr("src");
-            var new_photo = url.replace("w=400", "w=1080");
-            saveNewPhoto(new_photo);
+            var img_id = $(event.currentTarget).children('img').attr("id");
+            saveNewPhoto(img_id);
             window.location.href = "index.html";
           });
         });
       });
     </script>
 
-    <script id="musicStateTmpl" type="x-tmpl-mustache">
-      <h5><span class="glyphicon glyphicon-{{ musicState }}"></span> {{ song }} </h5>
-    </script>
+
 
   </body>
 </html>

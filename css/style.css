@@ -127,10 +127,11 @@ ul li {
 .btn-top-right .btn {
   margin-top: 5px;
   display: list-item;
-  width:60px
 }
 
 .red-btn {
+	font-size: 24px;
+	color: white;
   background-color: red;
 }
 
@@ -208,7 +209,9 @@ ul li {
   padding: 0px;
 }
 
-
+#musicState > h5 {
+	font-size: 24px;
+}
 
 
 /** IMG CROP **/

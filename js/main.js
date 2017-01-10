@@ -256,7 +256,7 @@ var setMusicStateTmpl = function() {
 
 	params = {
 		musicState: "play",
-		song: songs[currSong].split(".")[0]
+		song: songs[currSong].split(".mp3")[0]
 	}
 	if (getMusicState() != undefined) {
 		params.musicState = getMusicState();

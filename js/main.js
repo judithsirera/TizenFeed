@@ -238,11 +238,13 @@ var nextSong = function () {
 var initMusic = function () {
 	if (getCurrentSong() == undefined) {
 		currSong = 0;
-	}else {
+	} else {
 		currSong = getCurrentSong();
 	}
+	
 	playSong();
-
+	saveMusicState("play");
+	
 	if (getMusicState() == "pause") {
 		audio.pause();
 	}
